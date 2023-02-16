@@ -15,7 +15,7 @@ class ApiController extends Controller
     public function getMoneyPrice($money): string
     {
         $client = new Client();
-        $response = $client->request('GET', `https://api.binance.com/api/v3/avgPrice?symbol={$money}USDT`);
+        $response = $client->request('GET', "https://api.binance.com/api/v3/avgPrice?symbol=" . $money . "USDT");
         $data = json_decode($response->getBody(), true);
         $precioPromedio = $data['price'];
 

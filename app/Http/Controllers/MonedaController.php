@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
 
+use Illuminate\Support\Collection;
+
 use App\Models\Moneda;
 use App\Models\Historial;
 use App\Models\MonedaDto;
@@ -18,7 +20,26 @@ class MonedaController extends Controller
     public function index(): JsonResponse
     {
         $moneda = Moneda::all();
-        return response()->json($moneda);
+        $historial = Historial::all();
+
+        $nuevo_objeto = array();
+
+        foreach ($moneda as $m) {
+            $precioActual = $m->precio;
+            $precioAnterior = $historial->where('moneda_id', $m->id)
+                ->sortByDesc('fecha')
+                ->skip(1)
+                ->value('precio');
+
+            $nuevo_objeto[] = new MonedaDto(
+                $m->nombre,
+                $m->tipo,
+                $precioActual,
+                $precioAnterior
+            );
+        }
+
+        return response()->json(collect($nuevo_objeto));
     }
 
     /**
@@ -49,7 +70,7 @@ class MonedaController extends Controller
 
         foreach ($moneda as $m) {
             $hora = date('Y-m-d H:i:s');
-            $precio = $api->getMoneyPrice($m->nombre);
+            $precio = $api->getMoneyPrice($m->tipo);
 
             $historial = new Historial();
             $historial->moneda_id = $m->id;

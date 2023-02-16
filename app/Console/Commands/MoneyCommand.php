@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use App\Http\Controllers\MonedaController;
 
 class MoneyCommand extends Command
 {
@@ -11,21 +12,21 @@ class MoneyCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'updateMoney';
+    protected $signature = 'updatemoney';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Update money from API';
 
     /**
      * Execute the console command.
      */
     public function handle(): void
     {
-
-
+        $moneda = new MonedaController();
+        $moneda->update();
     }
 }

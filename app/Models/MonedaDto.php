@@ -2,14 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
-class MonedaDto extends Model
+class MonedaDto
 {
-    protected $nombreCompleto;
-    protected $tipo;
-    protected $precio;
-    protected $precioAnterior;
+    public $nombreCompleto;
+    public $tipo;
+    public $precio;
+    public $precioAnterior;
 
     public function __construct($nombreCompleto, $tipo, $precio, $precioAnterior)
     {
@@ -18,25 +16,4 @@ class MonedaDto extends Model
         $this->precio = $precio;
         $this->precioAnterior = $precioAnterior;
     }
-
-    public function getNombreCompleto()
-    {
-        return $this->nombreCompleto;
-    }
-
-    public function getTipo()
-    {
-        return $this->tipo;
-    }
-
-    public function getPrecio()
-    {
-        return $this->precio;
-    }
-
-    public function getPrecioAnterior()
-    {
-        return $this->precioAnterior;
-    }
-
 }
