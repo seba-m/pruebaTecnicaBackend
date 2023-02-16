@@ -18,8 +18,10 @@ use Illuminate\Support\Facades\Route;
     return $request->user();
 });*/
 
-Route::get('/actual', 'App\Http\Controllers\MonedaController@index'); //mostrar todas las monedas
-Route::get('/actual/{nombre}', 'App\Http\Controllers\MonedaController@show'); //mostrar una moneda en especifico
+Route::middleware(['cors'])->group(function () {
+    Route::get('/actual', 'App\Http\Controllers\MonedaController@index'); //mostrar todas las monedas
+    Route::get('/actual/{nombre}', 'App\Http\Controllers\MonedaController@show'); //mostrar una moneda en especifico
 
-Route::get('/historial', 'App\Http\Controllers\HistorialController@index'); //mostrar todo el historial
-Route::get('/historial/{nombre}', 'App\Http\Controllers\HistorialController@show'); //mostrar el historial de una moneda en especifico
+    Route::get('/historial', 'App\Http\Controllers\HistorialController@index'); //mostrar todo el historial
+    Route::get('/historial/{nombre}', 'App\Http\Controllers\HistorialController@show'); //mostrar el historial de una moneda en especifico
+});
