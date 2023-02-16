@@ -14,9 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+/*Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
-});
+});*/
 
 Route::get('/actual', 'App\Http\Controllers\MonedaController@index'); //mostrar todas las monedas
 Route::get('/actual/{nombre}', 'App\Http\Controllers\MonedaController@show'); //mostrar una moneda en especifico
