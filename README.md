@@ -20,6 +20,9 @@
 ## Tecnologías utilizadas
 
 - [Laravel](https://laravel.com/)
+- [AWS EC2](https://aws.amazon.com/es/ec2/) (como hosting del backend)
+- [Bit.io](https://bit.io/) (como hosting de la base de datos usando postgresql)
+- [nginx](http://nginx.org/) (para configurar el servidor web y permitir la conexión desde el internet al servidor)
 
 ## Autor
 
